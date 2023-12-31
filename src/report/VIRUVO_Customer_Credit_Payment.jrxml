@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MSC_Customer_Credit_Payment" language="groovy" pageWidth="226" pageHeight="396" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="abc75b7a-d846-4906-91fa-135845a640ee">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="InvoiceID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     customer.`customer_id` AS customer_customer_id,
+     customer.`name` AS customer_name,
+     customer.`gender` AS customer_gender,
+     customer.`contact_no` AS customer_contact_no,
+     customer.`email` AS customer_email,
+     customer.`address` AS customer_address,
+     customer.`status` AS customer_status,
+     invoice.`invoice_id` AS invoice_invoice_id,
+     invoice.`customer_id` AS invoice_customer_id,
+     invoice.`date` AS invoice_date,
+     invoice.`time` AS invoice_time,
+     invoice.`gross_total` AS invoice_gross_total,
+     invoice.`discount` AS invoice_discount,
+     invoice.`net_total` AS invoice_net_total,
+     invoice.`user_id` AS invoice_user_id,
+     invoice.`customer_credit` AS invoice_customer_credit,
+     invoice.`status` AS invoice_status,
+     invoice.`user_name` AS invoice_user_name,
+     invoice_payment.`id_invoice_payment` AS invoice_payment_id_invoice_payment,
+     invoice_payment.`invoice_invoice_id` AS invoice_payment_invoice_invoice_id,
+     invoice_payment.`date` AS invoice_payment_date,
+     invoice_payment.`time` AS invoice_payment_time,
+     invoice_payment.`cash` AS invoice_payment_cash,
+     invoice_payment.`balance` AS invoice_payment_balance,
+     shop_details.`shop_id` AS shop_details_shop_id,
+     shop_details.`shop_name` AS shop_details_shop_name,
+     shop_details.`address1` AS shop_details_address1,
+     shop_details.`address2` AS shop_details_address2,
+     shop_details.`phone` AS shop_details_phone
+FROM
+     `customer` customer INNER JOIN `invoice` invoice ON customer.`customer_id` = invoice.`customer_id`
+     INNER JOIN `invoice_payment` invoice_payment ON invoice.`invoice_id` = invoice_payment.`invoice_invoice_id`,
+     `shop_details` shop_details
+WHERE
+     invoice.invoice_id = $P{InvoiceID} && shop_details.shop_id='1']]>
+	</queryString>
+	<field name="customer_customer_id" class="java.lang.Integer"/>
+	<field name="customer_name" class="java.lang.String"/>
+	<field name="customer_gender" class="java.lang.String"/>
+	<field name="customer_contact_no" class="java.lang.String"/>
+	<field name="customer_email" class="java.lang.String"/>
+	<field name="customer_address" class="java.lang.String"/>
+	<field name="customer_status" class="java.lang.Boolean"/>
+	<field name="invoice_invoice_id" class="java.lang.Integer"/>
+	<field name="invoice_customer_id" class="java.lang.Integer"/>
+	<field name="invoice_date" class="java.sql.Date"/>
+	<field name="invoice_time" class="java.lang.String"/>
+	<field name="invoice_gross_total" class="java.lang.Double"/>
+	<field name="invoice_discount" class="java.lang.Double"/>
+	<field name="invoice_net_total" class="java.lang.Double"/>
+	<field name="invoice_user_id" class="java.lang.Integer"/>
+	<field name="invoice_customer_credit" class="java.lang.Double"/>
+	<field name="invoice_status" class="java.lang.String"/>
+	<field name="invoice_user_name" class="java.lang.String"/>
+	<field name="invoice_payment_id_invoice_payment" class="java.lang.Integer"/>
+	<field name="invoice_payment_invoice_invoice_id" class="java.lang.Integer"/>
+	<field name="invoice_payment_date" class="java.sql.Date"/>
+	<field name="invoice_payment_time" class="java.lang.String"/>
+	<field name="invoice_payment_cash" class="java.lang.Double"/>
+	<field name="invoice_payment_balance" class="java.lang.Double"/>
+	<field name="shop_details_shop_id" class="java.lang.Integer"/>
+	<field name="shop_details_shop_name" class="java.lang.String"/>
+	<field name="shop_details_address1" class="java.lang.String"/>
+	<field name="shop_details_address2" class="java.lang.String"/>
+	<field name="shop_details_phone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="241" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="116" width="186" height="1" uuid="a1e73ad5-9433-44ef-a9da-ce7f995fda00"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="117" width="186" height="21" uuid="cfb2789f-77ad-420c-b123-59e130e78320"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transactions Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="139" width="186" height="16" uuid="b4337315-a1d7-4ec0-a934-b5178c199bc6"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="138" width="186" height="1" uuid="81413d55-1bb3-43ac-b26c-00a6bc3a8325"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="171" width="186" height="16" uuid="47089bc7-931c-4b78-9f2b-c6178804fa38"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="155" width="186" height="16" uuid="7c9267a3-4cea-4c3a-b159-2ae26cf617fd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{customer_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="187" width="87" height="20" uuid="99860e82-b51b-4496-936b-1c9a3562eade"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{invoice_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="100" y="187" width="86" height="20" uuid="c4e1a687-196f-4a11-85b5-90af24c4819f"/>
+				<textFieldExpression><![CDATA[$F{invoice_time}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="207" width="186" height="16" uuid="3aa8bece-0466-4fda-8a6a-702a3d514018"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Value]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="0" y="223" width="186" height="14" uuid="75afe9f4-51e5-4665-b98c-a7b3d6caf91c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{invoice_net_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="238" width="186" height="1" uuid="ebb5bb93-3df0-4761-88cc-b104c07176a6"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="82" width="186" height="16" uuid="176b7c99-50a9-44f9-9ebd-8600cbe8cef1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_address1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="61" width="186" height="21" uuid="454e30fe-54a9-4b70-9f72-b6096458155f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_shop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="98" width="186" height="16" uuid="acd96372-e0e4-4a74-9bb6-fb8f6135d054"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_phone}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="-1" y="-5" width="189" height="66" uuid="427f8c42-29ea-4dea-8212-af0284094607"/>
+				<imageExpression><![CDATA["E:\\MSC\\src\\report\\IMG_1055.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField pattern="#,##0.00">
+				<reportElement x="57" y="17" width="129" height="13" uuid="a3d71a8e-f883-4c46-8387-320f326de52e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{invoice_payment_cash}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="3" width="87" height="14" uuid="b4227a1c-2443-4be5-8211-d9d53da756a9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{invoice_payment_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="3" width="86" height="14" uuid="9e1623ac-9ebd-42d2-96ac-5470c564a8ea"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{invoice_payment_time}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="17" width="57" height="13" uuid="9457490b-02e1-40e2-a865-17886ab52444"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Payed = ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="186" height="17" uuid="760c1383-3c6e-4501-8fd5-235b6b628225"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance Credit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="186" height="12" uuid="a32c1cbb-5cf9-4f3b-9a2b-a0957c87b3db"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Software by www.viruvo.com]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="43" width="186" height="9" uuid="6bec3673-8660-4f6d-9573-0115d2c4e3b0"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THANK YOU!]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="0" y="17" width="186" height="18" uuid="ac8ce792-28b1-4c9c-bb38-51a580bf717b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_customer_credit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

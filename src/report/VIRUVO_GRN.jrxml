@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GRN" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e9138972-9498-4f64-aac8-49cfac41f2e7">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="grnID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     grn_payment.`grn_payment_id` AS grn_payment_grn_payment_id,
+     grn_payment.`grn_id` AS grn_payment_grn_id,
+     grn_payment.`payment_price` AS grn_payment_payment_price,
+     grn_item.`grn_item_id` AS grn_item_grn_item_id,
+     grn_item.`grn_id` AS grn_item_grn_id,
+     grn_item.`item_id` AS grn_item_item_id,
+     grn_item.`qty` AS grn_item_qty,
+     grn_item.`supplier_price` AS grn_item_supplier_price,
+     grn_item.`margin_code` AS grn_item_margin_code,
+     grn_item.`discount` AS grn_item_discount,
+     grn_item.`selling_price` AS grn_item_selling_price,
+     grn_item.`amount` AS grn_item_amount,
+     grn.`grn_id` AS grn_grn_id,
+     grn.`supplier_id` AS grn_supplier_id,
+     grn.`date` AS grn_date,
+     grn.`payment_price` AS grn_payment_price,
+     grn.`update_credit_price` AS grn_update_credit_price,
+     supplier.`supplier_id` AS supplier_supplier_id,
+     supplier.`code` AS supplier_code,
+     supplier.`name` AS supplier_name,
+     supplier.`company_name` AS supplier_company_name,
+     supplier.`no` AS supplier_no,
+     supplier.`street` AS supplier_street,
+     supplier.`city` AS supplier_city,
+     supplier.`contact_no` AS supplier_contact_no,
+     supplier.`email` AS supplier_email,
+     supplier.`description` AS supplier_description,
+     supplier.`status` AS supplier_status,
+     shop_details.`shop_id` AS shop_details_shop_id,
+     shop_details.`shop_name` AS shop_details_shop_name,
+     shop_details.`address1` AS shop_details_address1,
+     shop_details.`address2` AS shop_details_address2,
+     shop_details.`phone` AS shop_details_phone,
+     item.`item_id` AS item_item_id,
+     item.`barcode` AS item_barcode,
+     item.`item_name` AS item_item_name,
+     item.`status` AS item_status
+FROM
+     `grn` grn INNER JOIN `grn_item` grn_item ON grn.`grn_id` = grn_item.`grn_id`
+     INNER JOIN `grn_payment` grn_payment ON grn.`grn_id` = grn_payment.`grn_id`
+     INNER JOIN `supplier` supplier ON grn.`supplier_id` = supplier.`supplier_id`
+     INNER JOIN `item` item ON grn_item.`item_id` = item.`item_id`,
+     `shop_details` shop_details
+where
+grn.grn_id = $P{grnID} && shop_details.shop_id='1']]>
+	</queryString>
+	<field name="grn_payment_grn_payment_id" class="java.lang.Integer"/>
+	<field name="grn_payment_grn_id" class="java.lang.Integer"/>
+	<field name="grn_payment_payment_price" class="java.lang.Double"/>
+	<field name="grn_item_grn_item_id" class="java.lang.Integer"/>
+	<field name="grn_item_grn_id" class="java.lang.Integer"/>
+	<field name="grn_item_item_id" class="java.lang.Integer"/>
+	<field name="grn_item_qty" class="java.lang.Double"/>
+	<field name="grn_item_supplier_price" class="java.lang.Double"/>
+	<field name="grn_item_margin_code" class="java.lang.String"/>
+	<field name="grn_item_discount" class="java.lang.Double"/>
+	<field name="grn_item_selling_price" class="java.lang.Double"/>
+	<field name="grn_item_amount" class="java.lang.Double"/>
+	<field name="grn_grn_id" class="java.lang.Integer"/>
+	<field name="grn_supplier_id" class="java.lang.Integer"/>
+	<field name="grn_date" class="java.sql.Date"/>
+	<field name="grn_payment_price" class="java.lang.Double"/>
+	<field name="grn_update_credit_price" class="java.lang.Double"/>
+	<field name="supplier_supplier_id" class="java.lang.Integer"/>
+	<field name="supplier_code" class="java.lang.String"/>
+	<field name="supplier_name" class="java.lang.String"/>
+	<field name="supplier_company_name" class="java.lang.String"/>
+	<field name="supplier_no" class="java.lang.String"/>
+	<field name="supplier_street" class="java.lang.String"/>
+	<field name="supplier_city" class="java.lang.String"/>
+	<field name="supplier_contact_no" class="java.lang.String"/>
+	<field name="supplier_email" class="java.lang.String"/>
+	<field name="supplier_description" class="java.lang.String"/>
+	<field name="supplier_status" class="java.lang.Boolean"/>
+	<field name="shop_details_shop_id" class="java.lang.Integer"/>
+	<field name="shop_details_shop_name" class="java.lang.String"/>
+	<field name="shop_details_address1" class="java.lang.String"/>
+	<field name="shop_details_address2" class="java.lang.String"/>
+	<field name="shop_details_phone" class="java.lang.String"/>
+	<field name="item_item_id" class="java.lang.Integer"/>
+	<field name="item_barcode" class="java.lang.String"/>
+	<field name="item_item_name" class="java.lang.String"/>
+	<field name="item_status" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="311" splitType="Stretch">
+			<textField>
+				<reportElement x="178" y="103" width="186" height="16" uuid="35add210-fafd-4661-a87a-d438b0126ed2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="66" width="186" height="21" uuid="f7f474ba-54db-40b4-ae81-27a95b1012ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_shop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="87" width="186" height="16" uuid="ab8d1bd6-da1d-4210-8f96-887c72cb780f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_address1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="178" width="82" height="32" uuid="bb42aebb-13a9-4170-ae24-e70d0fe9ff2c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="210" width="21" height="32" uuid="29019582-a47c-4901-8103-de2297a869f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="178" width="21" height="32" uuid="658f7799-cc36-4e37-a2d1-205569492db2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="210" width="82" height="32" uuid="43f4bfdf-4bf6-422f-9bc1-36f25ad59297"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="266" width="96" height="32" uuid="0473e434-93f7-4c75-810f-2f50171615b1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="146" width="21" height="32" uuid="759310ba-4cc7-4510-9292-ce94e1250857"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="284" width="555" height="27" uuid="a562c7f2-80e5-4ab5-8574-8610a4b1955a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="423" y="266" width="133" height="32" uuid="f03fa3bd-7048-415f-976a-098c96fcea66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="146" width="82" height="32" uuid="134fc27a-ddac-40ad-9c2c-4f02baeba1ee"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[GRN ID]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="257" width="555" height="1" uuid="62fa9213-a377-49b6-9ee5-228ddb9797ea"/>
+			</line>
+			<staticText>
+				<reportElement x="220" y="266" width="159" height="32" uuid="fa04ef8a-a88d-4f2f-8404-419953a4745c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Item Price]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="104" y="146" width="199" height="32" uuid="5972c2b4-4b98-4fd3-a4ae-56b5c99b3718"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_grn_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="178" width="275" height="32" uuid="4b2b4506-7d2d-4380-8f53-0617e6039065"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="210" width="199" height="32" uuid="386193fa-104e-40e0-8bed-74dbdea1e6a0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supplier_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="135" width="555" height="1" uuid="7ce98ba5-9861-48a0-ba90-c71f6982d937"/>
+			</line>
+			<image>
+				<reportElement x="178" y="0" width="189" height="66" uuid="fe21b4a7-327b-4220-a632-c8c9bd7da785"/>
+				<imageExpression><![CDATA["E:\\MSC\\src\\report\\LOGO.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="62" splitType="Stretch">
+			<textField>
+				<reportElement x="89" y="6" width="466" height="26" uuid="f702b7b4-8c33-49a1-8c2a-7c039def4946"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{item_item_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement x="104" y="32" width="96" height="24" uuid="daec0220-2776-45c3-a22a-3cf13595f81a"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_item_qty}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="220" y="32" width="159" height="24" uuid="7078d12f-9d08-4916-b7fe-e1e8c968f2dd"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_item_supplier_price}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="423" y="32" width="132" height="24" uuid="679d43b8-ef1a-46e2-9ce1-6b618c09d7d7"/>
+				<textElement textAlignment="Right">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_item_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="6" width="83" height="26" uuid="e79055a8-2f3d-426a-8224-537fcd092927"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_item_item_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement x="313" y="6" width="92" height="32" uuid="af899bca-d37e-498e-9796-4dd3a427fb1d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Net. Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="6" width="18" height="32" uuid="ab71d2c9-d5b8-4622-872e-1b83587c43ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="38" width="18" height="32" uuid="f6a05c5b-7b9f-4047-83cd-f644d15ed090"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="70" width="18" height="32" uuid="72cb1f4f-6469-4d20-80f4-9f52340d883b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="38" width="116" height="32" uuid="8a9002f4-afb8-4718-9b4d-62c6d98490c6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payed Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="70" width="62" height="32" uuid="9de6ce27-f3ad-49cf-b60b-6cd0305f5953"/>
+				<textElement verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credit]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="423" y="6" width="132" height="32" uuid="fe8bbebb-1492-488a-92f3-a9ef1d2dff1f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_payment_price}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="423" y="38" width="132" height="32" uuid="9c24964b-f1bc-4543-88c5-653a1b4e70e2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_payment_price}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="423" y="70" width="132" height="32" uuid="a1360b8d-baee-4879-8500-56bf12fea6a0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grn_update_credit_price}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="3901b96e-9e78-49e4-bc94-80f2b0d856b0"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

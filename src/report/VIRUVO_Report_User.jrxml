@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MSC_Report_User" language="groovy" pageWidth="226" pageHeight="396" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d39e4f56-6e58-4c82-a61c-6f6f6d6b8c40">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Report_ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     report.`report_id` AS report_report_id,
+     report.`date1` AS report_date1,
+     report.`date2` AS report_date2,
+     report.`income` AS report_income,
+     report.`payment` AS report_payment,
+     report.`shop_credit` AS report_shop_credit,
+     report.`customer_credit` AS report_customer_credit,
+     report.`profit_with_credit` AS report_profit_with_credit,
+     report.`payment_with_credit` AS report_payment_with_credit,
+     report.`reporting_date` AS report_reporting_date,
+     report.`reporting_time` AS report_reporting_time,
+     shop_details.`shop_id` AS shop_details_shop_id,
+     shop_details.`shop_name` AS shop_details_shop_name,
+     shop_details.`address1` AS shop_details_address1,
+     shop_details.`address2` AS shop_details_address2,
+     shop_details.`phone` AS shop_details_phone
+FROM
+     `report` report,
+     `shop_details` shop_details
+WHERE
+     report.report_id = $P{Report_ID} && shop_details.shop_id = '1']]>
+	</queryString>
+	<field name="report_report_id" class="java.lang.Integer"/>
+	<field name="report_date1" class="java.sql.Date"/>
+	<field name="report_date2" class="java.sql.Date"/>
+	<field name="report_income" class="java.lang.Double"/>
+	<field name="report_payment" class="java.lang.Double"/>
+	<field name="report_shop_credit" class="java.lang.Double"/>
+	<field name="report_customer_credit" class="java.lang.Double"/>
+	<field name="report_profit_with_credit" class="java.lang.Double"/>
+	<field name="report_payment_with_credit" class="java.lang.Double"/>
+	<field name="report_reporting_date" class="java.sql.Date"/>
+	<field name="report_reporting_time" class="java.lang.String"/>
+	<field name="shop_details_shop_id" class="java.lang.Integer"/>
+	<field name="shop_details_shop_name" class="java.lang.String"/>
+	<field name="shop_details_address1" class="java.lang.String"/>
+	<field name="shop_details_address2" class="java.lang.String"/>
+	<field name="shop_details_phone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="186" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="159" width="186" height="12" uuid="7248effe-9f36-4205-a66f-1167f2ce61a6"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Report Issued Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="116" width="186" height="21" uuid="5b3fc219-8ac7-4946-89ff-6a6b778e083b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transactions Report]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="184" width="186" height="1" uuid="ab226eb3-7cb5-4cd2-9e29-6bf698a71460"/>
+			</line>
+			<line>
+				<reportElement x="0" y="115" width="186" height="1" uuid="0eaf1e45-8b87-4299-afbf-9b119b39f37f"/>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="138" width="186" height="20" uuid="0fba0147-e1cd-4240-a770-a41a72786f39"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{report_date1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="171" width="90" height="14" uuid="76836718-5505-4ce1-9751-757559afd1ca"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{report_reporting_date}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="102" y="171" width="84" height="13" uuid="90777b55-7882-47ac-a7f7-2632c2d84ece"/>
+				<textFieldExpression><![CDATA[$F{report_reporting_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="98" width="186" height="16" uuid="aa34f92b-dce0-430b-86a5-4a3c510bbb6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_phone}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="137" width="186" height="1" uuid="34ba19b5-d96f-4da5-9eba-8a002ecbc770"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="61" width="186" height="21" uuid="251cf70b-1a03-4255-a3cb-d1d62f94868d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_shop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="82" width="186" height="16" uuid="5fce22b3-d23c-4c32-b526-53b32247d070"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{shop_details_address1}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="-1" y="-5" width="189" height="66" uuid="4a8b757c-a454-419a-b0dc-35a92484358d"/>
+				<imageExpression><![CDATA["E:\\MSC\\src\\report\\IMG_1055.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="137" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="90" width="186" height="20" uuid="2578bbfd-fa0d-4cdc-8111-8613f7975e93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Full Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="186" height="20" uuid="6aa36b43-7555-4e0f-a0f9-01ae98552234"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Credit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="186" height="20" uuid="2ac3eb48-2a91-4e0b-b35d-e835a4e92bef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cash Amount]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="0" y="20" width="186" height="20" uuid="0cd89592-31df-4413-8d9b-5d7074caff50"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{report_income}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="0" y="64" width="186" height="20" uuid="f17747ec-2288-4bf3-941c-6638150e53e8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{report_customer_credit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="0" y="110" width="186" height="20" uuid="4d1e49d1-1f76-4048-b0b0-810372ef4cc0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{report_profit_with_credit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="186" height="12" uuid="f7ee07f8-e8c9-475f-9cc6-1b04bcdf09cc"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VIRUVO Software 078 9629777]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="186" height="14" uuid="0d8a8c31-9562-4d5a-9c82-39d084e58d5b"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THANK YOU!]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
